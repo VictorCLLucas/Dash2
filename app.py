@@ -8,7 +8,7 @@ api = Api(app)
 @app.route('/', methods=['GET'])
 
 def home():
-    xmen = """
+    xmen = r"""
    =ccccc,      ,cccc       ccccc      ,cccc,  ?$$$$$$$,  ,ccc,   -ccc        
   :::"$$$$bc    $$$$$     ::`$$$$$c,  : $$$$$c`:"$$$$???'`."$$$$c,:`?$$c      
   `::::"?$$$$c,z$$$$F     `:: ?$$$$$c,`:`$$$$$h`:`?$$$,` :::`$$$$$$c,"$$h,    
@@ -24,7 +24,7 @@ def home():
           : :::::'        `                                                    
            ``
     """
-    return ascii(xmen)
+    return xmen
 
 
 if __name__ == "__main__":
