@@ -24,7 +24,7 @@ def home():
           : :::::'        `                                                    
            ``
     """
-    return xmen
+    return ascii(xmen)
 
 
 if __name__ == "__main__":
