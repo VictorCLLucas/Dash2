@@ -25,7 +25,7 @@ def home():
            ``
     """
     resp = app.make_response(xmen)
-    resp.headers["server"] = "Access-Control-Allow-Origin"
+    resp.headers["Access-Control-Allow-Origin"] = "*"
     return resp
 
 
