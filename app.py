@@ -8,7 +8,8 @@ api = Api(app)
 @app.route('/', methods=['GET'])
 
 def home():
-    xmen = r"""
+    xmen = { 
+      "data" : """
    =ccccc,      ,cccc       ccccc      ,cccc,  ?$$$$$$$,  ,ccc,   -ccc           
   :::"$$$$bc    $$$$$     ::`$$$$$c,  : $$$$$c`:"$$$$???'`."$$$$c,:`?$$c         
   `::::"?$$$$c,z$$$$F     `:: ?$$$$$c,`:`$$$$$h`:`?$$$,` :::`$$$$$$c,"$$h,       
@@ -24,6 +25,7 @@ def home():
           : :::::'        `                                                      
            ``
     """
+    }
     resp = app.make_response(xmen)
     resp.headers["Access-Control-Allow-Origin"] = "*"
     return resp
