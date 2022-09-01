@@ -1,5 +1,4 @@
 from crypt import methods
-from urllib import response
 from flask import Flask
 from flask_restful import Api, Resource
 
@@ -25,8 +24,10 @@ def home():
           : :::::'        `                                                      
            ``
     """
-    response = app.response_class(headers="Access-Control-Allow-Origin")
-    return response
+  
+    resp = Flask.Response(xmen)
+    resp.headers["Access-Control-Allow-Origin"]
+    return resp
 
 
 if __name__ == "__main__":
