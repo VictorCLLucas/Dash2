@@ -24,9 +24,9 @@ def home():
     #         : :::::'        `                                                      
     #         ``
     #   """
-    resp = app.Response("Hello world!")
-    resp.headers['Access-Control-Allow-Origin'] = '*'
-    return resp
+    response = app.Response()
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
 
 if __name__ == "__main__":
     app.run(debug=True)
