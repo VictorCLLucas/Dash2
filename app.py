@@ -2,6 +2,9 @@ from crypt import methods
 from flask import Flask
 from flask_restful import Api, Resource
 
+import external_calls as ext
+
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -29,6 +32,15 @@ def home():
 		resp.headers["Access-Control-Allow-Origin"] = "*"
 		return resp
 
+
+@app.route("/boredapi", methods=['GET'])
+def get_bored_api():
+	#Get data from http://www.boredapi.com/api/activity
+	bored_api_data = ext.get_bored_data()
+	#Return the data to the endpoint
+	resp = app.make_response(bored_api_data)
+	resp.headers["Access-Control-Allow-Origin"] = "*"
+	return resp
 
 
 
