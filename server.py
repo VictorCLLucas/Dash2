@@ -5,7 +5,9 @@ from typing import Dict
 from urllib import request
 from urllib.request import urlopen
 import jwt
-from flask import Flask, _request_ctx_stack, request
+from flask import Flask, _request_ctx_stack, request, jsonify
+
+APP = Flask(__name__)
 
 AUTH0_DOMAIN = env.get("AUTH0_DOMAIN")
 API_IDENTIFIER = env.get("API_IDENTIFIER")
@@ -13,13 +15,15 @@ ALGORITHMS = ["RS256"]
 API_AUDIENCE = env.get("API_AUDIENCE")
 
 class AuthError(Exception):
-    """
-    An AuthError is raised whenever the authentication failed.
-    """
-    def __init__(self, error: Dict[str, str], status_code: int):
-        super().__init__()
+    def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
+
+@APP.errorhandler(AuthError)
+def handle_auth_error(ex):
+    response = jsonify(ex.error)
+    response.status_code = ex.status_code
+    return response
 
 def get_token_auth_header():
     """Obtains the Access Token from the Authorization Header
