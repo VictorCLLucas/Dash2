@@ -1,8 +1,24 @@
 from functools import wraps
 import json
+from os import environ as env
+from typing import Dict
 from urllib import request
 from urllib.request import urlopen
+import jwt
 
+AUTH0_DOMAIN = env.get("AUTH0_DOMAIN")
+API_IDENTIFIER = env.get("API_IDENTIFIER")
+ALGORITHMS = ["RS256"]
+API_AUDIENCE = env.get("API_AUDIENCE")
+
+class AuthError(Exception):
+    """
+    An AuthError is raised whenever the authentication failed.
+    """
+    def __init__(self, error: Dict[str, str], status_code: int):
+        super().__init__()
+        self.error = error
+        self.status_code = status_code
 
 def get_token_auth_header():
     """Obtains the Access Token from the Authorization Header
