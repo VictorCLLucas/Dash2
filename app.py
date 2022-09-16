@@ -11,7 +11,6 @@ api = Api(app)
 
 @app.route('/', methods=['GET'])
 @cross_origin(headers=['Content-Type', 'Authorization'])
-@requires_auth
 def home():
 		resp = app.make_response('Hello World!')
 		resp.headers["Access-Control-Allow-Origin"] = "*"
@@ -31,4 +30,3 @@ def get_bored_api():
 
 if __name__ == "__main__":
 		app.run(debug=True)
-		
