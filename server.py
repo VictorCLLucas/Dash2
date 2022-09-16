@@ -5,6 +5,7 @@ from typing import Dict
 from urllib import request
 from urllib.request import urlopen
 import jwt
+from flask import Flask, _request_ctx_stack
 
 AUTH0_DOMAIN = env.get("AUTH0_DOMAIN")
 API_IDENTIFIER = env.get("API_IDENTIFIER")
