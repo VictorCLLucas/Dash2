@@ -3,9 +3,9 @@ import json
 from os import environ as env
 from typing import Dict
 from urllib import request
-import urllib.request
+from urllib.request import urlopen
 import jwt
-from flask import Flask, _request_ctx_stack
+from flask import Flask, _request_ctx_stack, request
 
 AUTH0_DOMAIN = env.get("AUTH0_DOMAIN")
 API_IDENTIFIER = env.get("API_IDENTIFIER")
@@ -55,7 +55,7 @@ def requires_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = get_token_auth_header()
-        jsonurl = urllib.urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
+        jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
         jwks = json.loads(jsonurl.read())
         unverified_header = jwt.get_unverified_header(token)
         rsa_key = {}
