@@ -12,21 +12,20 @@ api = Api(app)
 @app.route('/', methods=['GET'])
 @cross_origin(headers=['Content-Type', 'Authorization'])
 def home():
-		resp = app.make_response('Hello World!')
-		resp.headers["Access-Control-Allow-Origin"] = "*"
-		return resp
-
+    resp = app.make_response('Hello World!')
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
 
 @app.route("/boredapi", methods=['GET'])
 @cross_origin(headers=['Content-Type', 'Authorization'])
 @requires_auth
 def get_bored_api():
-	bored_api_data = ext.get_bored_data()
-	resp = app.make_response(bored_api_data)
-	resp.headers["Access-Control-Allow-Origin"] = "*"
-	return resp
+    bored_api_data = ext.get_bored_data()
+    resp = app.make_response(bored_api_data)
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
 
 
 
 if __name__ == "__main__":
-		app.run(debug=True)
+    app.run(debug=True)
